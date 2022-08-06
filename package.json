@@ -1,0 +1,35 @@
+{
+  "name": "real-time-chat-app",
+  "version": "1.0.0",
+  "description": "a minimalist chat app using web sockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trevor-james-nangosha/real-time-chat-app.git"
+  },
+  "keywords": [
+    "sockets",
+    "chat",
+    "js"
+  ],
+  "author": "trevornangosha16@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trevor-james-nangosha/real-time-chat-app/issues"
+  },
+  "homepage": "https://github.com/trevor-james-nangosha/real-time-chat-app#readme",
+  "dependencies": {
+    "@socket.io/redis-adapter": "^7.2.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "moment": "^2.29.4",
+    "redis": "^4.2.0",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
