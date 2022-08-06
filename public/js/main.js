@@ -1,11 +1,12 @@
-'use es5'
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
 // Get username and room from URL
-const { username, room } = new URLSearchParams(location.search);
+const urlParams = new URLSearchParams(location.search);
+const username= urlParams.get('username')
+const room = urlParams.get('room')
 
 const socket = io();
 
@@ -20,8 +21,8 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
-  console.log(message);
   outputMessage(message);
+
 
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -33,9 +34,7 @@ chatForm.addEventListener('submit', (e) => {
 
   // Get message text
   let msg = e.target.elements.msg.value;
-
   msg = msg.trim();
-
   if (!msg) {
     return false;
   }
@@ -54,12 +53,12 @@ function outputMessage(message) {
   div.classList.add('message');
   const p = document.createElement('p');
   p.classList.add('meta');
-  p.innerText = message.username;
+  p.innerText = message.userName;
   p.innerHTML += `<span>${message.time}</span>`;
   div.appendChild(p);
   const para = document.createElement('p');
   para.classList.add('text');
-  para.innerText = message.text;
+  para.innerText = message.textMessage;
   div.appendChild(para);
   document.querySelector('.chat-messages').appendChild(div);
 }
@@ -74,7 +73,7 @@ function outputUsers(users) {
   userList.innerHTML = '';
   users.forEach((user) => {
     const li = document.createElement('li');
-    li.innerText = user.username;
+    li.innerText = user.userName;
     userList.appendChild(li);
   });
 }
